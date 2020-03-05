@@ -12,11 +12,13 @@ Moq
 xUnit
 
 Getting Started
+
 Clone the repo by following the link below
+
 git clone https://github.com/proappsprojects/bugtracker.git
+
 Restore all the dependencies
-dotnet restore
 
 Execute:
-Open solution BugTracker.sln
+Open solution BugTracker.sln 
 Run it with F5.
