@@ -6,10 +6,12 @@ using BugTracker.Core.Domain;
 using BugTracker.Core.Interfaces;
 using BugTracker.Core.Services;
 using BugTracker.Data.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BugTracker.Web.Controllers
 {
+    [Authorize]
     public class BugController : Controller
     {
 
@@ -45,19 +47,30 @@ namespace BugTracker.Web.Controllers
             return RedirectToAction("Index");
         }
 
-        //[HttpGet]
-        //public async Task<IActionResult> Edit(long id)
-        //{
-        //    var bug = await _bugTrackerService.GetAsync(id);
-        //    return View("Create", bug);
-        //}
+        [HttpGet]
+        public async Task<IActionResult> Detail(long? id)
+        {
+            if (!id.HasValue)
+            {
+                return NotFound();
+            }
+            var bug = await _bugTrackerService.GetAsync((long)id);
+            return View("Detail", bug);
+        }
 
-        //[HttpPost]
-        //public async Task<IActionResult> Edit(Bug bug)
-        //{
+        [HttpGet]
+        public async Task<IActionResult> Edit(long id)
+        {
+            var bug = await _bugTrackerService.GetAsync(id);
+            return View("Edit", bug);
+        }
 
-        //    await _bugTrackerService.CreateAsync(bug);
-        //    return RedirectToAction("Index");
-        //}
+        [HttpPost]
+        public async Task<IActionResult> Edit(Bug bug)
+        {
+
+            await _bugTrackerService.EditAsync(bug);
+            return RedirectToAction("Index");
+        }
     }
 }

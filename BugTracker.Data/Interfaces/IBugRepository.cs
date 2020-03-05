@@ -9,7 +9,9 @@ namespace BugTracker.Data.Interfaces
     public interface IBugRepository
     {
         Task CreateAsync(Bug bug);
+        Task EditAsync(Bug bug);
         Task<IEnumerable<Bug>> GetAsync();
+        Task<Bug>  GetAsync(long id);
         Task<IEnumerable<Bug>> GetAsync(Common.Enums.Status status);
     }
 }

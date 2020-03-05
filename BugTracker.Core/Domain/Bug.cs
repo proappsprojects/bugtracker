@@ -8,9 +8,12 @@ namespace BugTracker.Core.Domain
 {
     public class Bug
     {
-        [StringLength(60, MinimumLength = 3)]
+        public long Id { get; set; }
+        [StringLength(50, MinimumLength = 2)] 
         [Required]
+        //[RegularExpression("^[a-zA-Z0-9]*$", ErrorMessage = "Only alphabets and numbers allowed.")]
         public string Title { get; set; }
+        [StringLength(150, MinimumLength = 2)]
         [Required(ErrorMessage = "Description is required")]
         public string Description { get; set; }
         [Required(ErrorMessage = "Date is required")]

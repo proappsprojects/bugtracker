@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BugTracker.Data.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BugTracker.Core.Api.Controllers
@@ -21,6 +22,7 @@ namespace BugTracker.Core.Api.Controllers
 
         // GET api/values
         [HttpGet]
+        [Authorize]
         public async Task<IEnumerable<Data.Entities.Bug>> GetAsync()
         {
             return await _bugRepository.GetAsync();

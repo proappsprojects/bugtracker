@@ -35,8 +35,10 @@
                 {
                     <tr>
                         <td>
-                            @Html.DisplayFor(m => bug.Id)
-                        </td>
+                            <a asp-action="Detail" asp-route-id="@bug.Id">
+                                @Html.DisplayFor(m => bug.Id)
+                            </a>
+</td>
                         <td>
                             @Html.DisplayFor(m => bug.Title)
                         </td>

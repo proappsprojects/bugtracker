@@ -6,7 +6,6 @@ using Moq;
 using System;
 using Xunit;
 
-
 namespace BugTracker.Core.Test.Services
 {
     public class CreateBugServiceTest
@@ -56,12 +55,12 @@ namespace BugTracker.Core.Test.Services
 
         }
         [Fact]
-        public void An_Exception_Should_Be_Thrown_If_Bub_Request_Is_Null()
+        public async System.Threading.Tasks.Task An_Exception_Should_Be_Thrown_If_Bub_Request_Is_Null()
         {
             //Assign
             //Act
             //Assert
-            Assert.Throws<ArgumentNullException>(() => _service.CreateBug(null));
+            await Assert.ThrowsAsync<ArgumentNullException>(() => _service.CreateAsync(null));
 
         }
 
